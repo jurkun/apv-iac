@@ -15,7 +15,10 @@
         <div>
             <h1 class="font-semibold text-lg">APV - IAC SABILULUNGAN</h1>
             @auth
-            <p class="text-xs text-gray-300">{{ auth()->user()->name }} — {{ auth()->user()->role === 'admin_pusat' ? 'Admin pusat' : 'Pengurus ' . auth()->user()->wilayah }}</p>
+            <p class="text-xs text-gray-300">
+                <a href="{{ route('profile.edit') }}" class="hover:text-[#F0A202] hover:underline">{{ auth()->user()->name }}</a>
+                — {{ auth()->user()->role === 'admin_pusat' ? 'Admin pusat' : 'Pengurus ' . auth()->user()->wilayah }}
+            </p>
             @endauth
         </div>
     </div>
