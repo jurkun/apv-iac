@@ -12,7 +12,7 @@ class Member extends Model
 
     protected $fillable = [
         'kode_anggota', 'nama', 'hp', 'email', 'wilayah', 'alamat',
-        'tanggal_gabung', 'status', 'foto_ktp',
+        'tanggal_gabung', 'status', 'foto_ktp', 'foto',
     ];
 
     protected $casts = [

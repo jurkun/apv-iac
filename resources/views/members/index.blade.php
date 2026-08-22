@@ -35,6 +35,7 @@
                     </span>
                 </td>
                 <td class="px-4">
+                    <a href="{{ route('members.card', $m) }}" target="_blank" class="text-green-600 text-xs mr-2">Cetak Kartu</a>
                     <a href="{{ route('members.edit', $m) }}" class="text-blue-600 text-xs mr-2">Edit</a>
                     <form action="{{ route('members.destroy', $m) }}" method="POST" class="inline" onsubmit="return confirm('Hapus anggota ini?')">
                         @csrf @method('DELETE')

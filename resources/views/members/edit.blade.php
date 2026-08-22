@@ -25,10 +25,17 @@
             </div>
         </div>
         <div>
-            <label class="text-sm block mb-1">Wilayah / kota</label>
-            <input type="text" name="wilayah" value="{{ old('wilayah', $member->wilayah) }}" required
-                   {{ auth()->user()->role !== 'admin_pusat' ? 'readonly' : '' }}
-                   class="w-full border border-gray-300 rounded px-3 py-2 text-sm {{ auth()->user()->role !== 'admin_pusat' ? 'bg-gray-100' : '' }}">
+            <label class="text-sm block mb-1">Wilayah</label>
+            @if(auth()->user()->role === 'admin_pusat')
+            <select name="wilayah" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm">
+                @foreach($wilayahs as $w)
+                    <option value="{{ $w->nama }}" {{ old('wilayah', $member->wilayah) === $w->nama ? 'selected' : '' }}>{{ $w->nama }}</option>
+                @endforeach
+            </select>
+            @else
+            <input type="text" value="{{ $member->wilayah }}" readonly class="w-full border border-gray-300 rounded px-3 py-2 text-sm bg-gray-100">
+            <input type="hidden" name="wilayah" value="{{ $member->wilayah }}">
+            @endif
         </div>
         <div>
             <label class="text-sm block mb-1">Alamat</label>
@@ -46,6 +53,13 @@
                     <option value="nonaktif" {{ $member->status === 'nonaktif' ? 'selected' : '' }}>Non-aktif</option>
                 </select>
             </div>
+        </div>
+        <div>
+            <label class="text-sm block mb-1">Foto anggota (untuk kartu member)</label>
+            @if($member->foto)
+                <img src="{{ asset('storage/' . $member->foto) }}" class="h-20 rounded border mb-2">
+            @endif
+            <input type="file" name="foto" accept="image/*" class="w-full text-sm">
         </div>
         <div>
             <label class="text-sm block mb-1">Foto KTP</label>

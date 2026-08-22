@@ -10,8 +10,8 @@
 
 <div class="w-full max-w-sm">
     <div class="flex flex-col items-center gap-2 justify-center mb-6">
-         <img src="{{ asset('images/logo-apv-iac.jpeg') }}" alt="APV IAC Sabilulungan" class="h-24 w-24 rounded-lg object-cover border-2 border-[#F0A202]">
-        <h1 class="font-semibold text-lg">APV - IAC SABILULUNGAN</h1>
+        <img src="{{ asset('images/logo-apv-iac.jpeg') }}" alt="APV IAC Sabilulungan" class="h-24 w-24 rounded-lg object-cover border-2 border-[#F0A202]">
+        <h1 class="font-semibold text-lg text-center">APV - IAC SABILULUNGAN</h1>
     </div>
 
     <div class="bg-white border border-gray-200 rounded-lg p-6">

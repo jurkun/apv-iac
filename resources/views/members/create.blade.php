@@ -28,8 +28,16 @@
 
         @if(auth()->user()->role === 'admin_pusat')
         <div>
-            <label class="text-sm block mb-1">Wilayah / kota</label>
-            <input type="text" name="wilayah" value="{{ old('wilayah') }}" required placeholder="mis. Bandung" class="w-full border border-gray-300 rounded px-3 py-2 text-sm">
+            <label class="text-sm block mb-1">Wilayah</label>
+            <select name="wilayah" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm">
+                <option value="">Pilih wilayah</option>
+                @foreach($wilayahs as $w)
+                    <option value="{{ $w->nama }}" {{ old('wilayah') === $w->nama ? 'selected' : '' }}>{{ $w->nama }}</option>
+                @endforeach
+            </select>
+            @if($wilayahs->isEmpty())
+                <p class="text-xs text-red-600 mt-1">Belum ada wilayah terdaftar. <a href="{{ route('wilayah.index') }}" class="underline">Tambahkan dulu di sini</a>.</p>
+            @endif
         </div>
         @else
         <input type="hidden" name="wilayah" value="{{ auth()->user()->wilayah }}">
@@ -52,6 +60,10 @@
                     <option value="nonaktif">Non-aktif</option>
                 </select>
             </div>
+        </div>
+        <div>
+            <label class="text-sm block mb-1">Foto anggota (untuk kartu member)</label>
+            <input type="file" name="foto" accept="image/*" class="w-full text-sm">
         </div>
         <div>
             <label class="text-sm block mb-1">Foto KTP (opsional)</label>

@@ -28,6 +28,9 @@
         <a href="{{ route('members.index') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B]">Anggota</a>
         <a href="{{ route('vehicles.index') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B]">Kendaraan</a>
         <a href="{{ route('dues.index') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B]">Iuran</a>
+        @if(auth()->user()->role === 'admin_pusat')
+        <a href="{{ route('wilayah.index') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B]">Wilayah</a>
+        @endif
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button class="px-3 py-2 rounded-md hover:bg-[#D64545] hover:text-white">Keluar</button>
