@@ -10,7 +10,7 @@
 
 <div class="w-full max-w-sm">
     <div class="flex items-center gap-3 justify-center mb-6">
-        <span class="bg-[#F0A202] text-[#20242B] font-bold px-3 py-1 rounded border-2 border-[#20242B] tracking-wide">APV · ID</span>
+        <img src="{{ asset('images/logo-apv-iac.jpeg') }}" alt="APV IAC Sabilulungan" class="h-12 w-12 rounded object-cover border-2 border-[#F0A202]">
         <h1 class="font-semibold text-lg">APV - IAC SABILULUNGAN</h1>
     </div>
 

@@ -11,7 +11,7 @@
 
 <div class="bg-[#20242B] text-[#F3F1E9] px-6 py-4 flex items-center justify-between flex-wrap gap-3">
     <div class="flex items-center gap-3">
-        <span class="bg-[#F0A202] text-[#20242B] font-bold px-3 py-1 rounded border-2 border-[#20242B] tracking-wide">APV · ID</span>
+        <img src="{{ asset('images/logo-apv-iac.jpeg') }}" alt="APV IAC Sabilulungan" class="h-10 w-10 rounded object-cover border-2 border-[#F0A202]">
         <div>
             <h1 class="font-semibold text-lg">APV - IAC SABILULUNGAN</h1>
             @auth
