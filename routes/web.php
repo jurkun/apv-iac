@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 // Auth bawaan laravel/ui (login, register, dst)
 Auth::routes(['register' => false]); // registrasi anggota baru dilakukan admin, bukan self-register
-
+Route::redirect('/home', '/');
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
