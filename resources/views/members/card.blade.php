@@ -47,18 +47,18 @@
             </div>
 
             <!-- kolom kanan: info -->
-            <div class="flex-1 py-4 pr-4 flex flex-col justify-between text-white">
-                <div>
-                    <div class="flex items-center gap-2 mb-2">
-                        <img src="{{ asset('images/logo-apv-iac.jpeg') }}" class="w-8 h-8 rounded object-cover border border-[#F0A202]">
-                        <div class="leading-tight">
-                            <p class="text-[9px] text-gray-300 uppercase tracking-wider">Kartu Tanda Anggota</p>
-                            <p class="text-xs font-bold text-[#F0A202]">APV - IAC SABILULUNGAN</p>
-                        </div>
+            <div class="flex-1 py-4 pr-4 flex flex-col text-white">
+                <div class="flex items-center gap-2">
+                    <img src="{{ asset('images/logo-apv-iac.jpeg') }}" class="w-8 h-8 rounded object-cover border border-[#F0A202]">
+                    <div class="leading-tight">
+                        <p class="text-[9px] text-gray-300 uppercase tracking-wider">Kartu Tanda Anggota</p>
+                        <p class="text-xs font-bold text-[#F0A202]">APV - IAC SABILULUNGAN</p>
                     </div>
+                </div>
 
-                    <p class="text-lg font-bold leading-tight mt-3">{{ $member->nama }}</p>
-                    <p class="text-[11px] text-gray-300">{{ $member->wilayah }}</p>
+                <div class="flex-1 flex flex-col justify-center">
+                    <p class="text-xl font-bold leading-tight uppercase tracking-wide">{{ $member->nama }}</p>
+                    <p class="text-[11px] text-gray-300 uppercase tracking-wider mt-1">{{ $member->wilayah }}</p>
                 </div>
 
                 <div class="flex items-end justify-between">
