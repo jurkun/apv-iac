@@ -14,8 +14,8 @@
     </div>
 </div>
 
-<div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-    <table class="w-full text-sm">
+<div class="bg-white border border-gray-200 rounded-lg overflow-x-auto">
+    <table class="w-full text-sm min-w-[700px]">
         <thead>
             <tr class="text-left text-xs text-gray-500 uppercase border-b bg-gray-50">
                 <th class="py-3 px-4">ID</th><th>Nama</th><th>Wilayah</th><th>No. HP</th><th>Kendaraan</th><th>Status</th><th></th>

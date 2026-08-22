@@ -13,8 +13,8 @@
     </div>
 </div>
 
-<div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-    <table class="w-full text-sm">
+<div class="bg-white border border-gray-200 rounded-lg overflow-x-auto">
+    <table class="w-full text-sm min-w-[600px]">
         <thead>
             <tr class="text-left text-xs text-gray-500 uppercase border-b bg-gray-50">
                 <th class="py-3 px-4">Nama</th><th>Wilayah</th><th>Bulan</th><th>Nominal</th><th>Tgl bayar</th><th></th>
