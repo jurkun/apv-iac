@@ -8,6 +8,7 @@
 
     <form method="POST" action="{{ route('profile.password.update') }}" class="space-y-4">
         @csrf
+        @method('PUT')
         <div>
             <label class="text-sm block mb-1">Password saat ini</label>
             <input type="password" name="current_password" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm">
