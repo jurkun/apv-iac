@@ -148,6 +148,7 @@
     <a href="#kegiatan">Kegiatan</a>
     <a href="#galeri">Galeri</a>
     <a href="#sponsor">Sponsor</a>
+    <a href="https://apvclub.com/cekid/" target="_blank" rel="noopener">Cek ID</a>
     <a href="#gabung">Gabung</a>
   </div>
   <button class="burger" id="burgerBtn" aria-label="Buka menu"><span></span><span></span><span></span></button>
