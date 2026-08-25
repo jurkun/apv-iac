@@ -3,20 +3,33 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DueController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\GalleryPhotoController;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\LandingSettingController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\WilayahController;
 use Illuminate\Support\Facades\Route;
 
+// Landing page publik — bisa diakses tanpa login
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+
 // Auth bawaan laravel/ui (login, register, dst)
 Auth::routes(['register' => false]); // registrasi anggota baru dilakukan admin, bukan self-register
 
-// laravel/ui secara default redirect ke /home setelah login, tapi dashboard kita di /
-Route::redirect('/home', '/');
+// laravel/ui secara default redirect ke /home setelah login, dashboard sekarang di /dashboard
+Route::redirect('/home', '/dashboard');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/gallery', [GalleryPhotoController::class, 'index'])->name('gallery.index');
+    Route::post('/gallery', [GalleryPhotoController::class, 'store'])->name('gallery.store');
+    Route::delete('/gallery/{galleryPhoto}', [GalleryPhotoController::class, 'destroy'])->name('gallery.destroy');
+
+    Route::get('/gallery-settings', [LandingSettingController::class, 'edit'])->name('landing-settings.edit');
+    Route::put('/gallery-settings', [LandingSettingController::class, 'update'])->name('landing-settings.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
