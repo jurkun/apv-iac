@@ -20,7 +20,7 @@
   nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
     padding:18px 6vw;background:linear-gradient(to bottom, rgba(27,28,30,.95), rgba(27,28,30,0));}
   .brand{display:flex;align-items:center;gap:10px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.05em;}
-  .brand-mark{width:34px;height:24px;border:2px solid var(--sinyal);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--sinyal);}
+  .brand-logo{width:34px;height:34px;border-radius:6px;object-fit:cover;border:2px solid var(--sinyal);}
   nav .links{display:flex;gap:6px;font-size:.85rem;color:var(--krom-dim);align-items:center;}
   nav .links a{padding:8px 14px;border-radius:6px;transition:background .2s ease, color .2s ease;}
   nav .links a:hover{background:var(--dashboard-orange);color:#20242B;}
@@ -36,7 +36,7 @@
 
   .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 6vw 8vh;
     background:radial-gradient(ellipse at 70% 20%, rgba(232,89,12,.16), transparent 55%), linear-gradient(180deg, var(--aspal) 0%, #151618 100%);}
-  .route-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.5;}
+  .route-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none;}
   .eyebrow{font-family:'Rajdhani',sans-serif;font-size:.85rem;letter-spacing:.35em;text-transform:uppercase;color:var(--sinyal);margin-bottom:18px;}
   .hero h1{font-size:clamp(2.6rem,8vw,6.4rem);line-height:.95;text-transform:uppercase;color:var(--krem);}
   .hero h1 span{color:var(--sinyal);}
@@ -125,7 +125,7 @@
 <body>
 
 <nav>
-  <div class="brand"><span class="brand-mark">D</span> APV IAC SABILULUNGAN</div>
+  <div class="brand"><img src="{{ asset('images/logo-apv-iac.jpeg') }}" alt="APV IAC Sabilulungan" class="brand-logo"> APV IAC SABILULUNGAN</div>
   <div class="links" id="navLinks">
     <a href="#rute">Perjalanan Kami</a>
     <a href="#kegiatan">Kegiatan</a>
@@ -265,7 +265,7 @@
 
 <footer>
   <div>
-    <div class="brand"><span class="brand-mark">D</span> APV IAC SABILULUNGAN</div>
+    <div class="brand"><img src="{{ asset('images/logo-apv-iac.jpeg') }}" alt="APV IAC Sabilulungan" class="brand-logo"> APV IAC SABILULUNGAN</div>
     <p style="margin-top:10px;max-width:320px;">Komunitas pemilik &amp; pecinta Suzuki APV se-Jawa Barat.</p>
     <a href="{{ route('login') }}" class="admin-link">Login Admin</a>
   </div>
