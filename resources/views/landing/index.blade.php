@@ -169,7 +169,7 @@
     <path d="M -50 500 C 200 500, 250 300, 500 320 S 800 150, 1050 180" fill="none" stroke="#E8590C" stroke-width="2" stroke-dasharray="6 10" opacity="0.5"/>
   </svg>
   <div class="eyebrow">Sabilulungan — Silih Asih, Silih Asah, Silih Asuh</div>
-  <h1>{{ $settings['hero_title_1'] ?? 'Satu Jalur,' }}<br>{{ $settings['hero_title_2'] ?? 'Sejuta' }} <span>Kilometer</span><br>{{ $settings['hero_title_3'] ?? 'Kebersamaan.' }}</h1>
+  <h1>{{ $settings['hero_title_1'] ?? 'Satu Jalur,' }}<br>{{ $settings['hero_title_2'] ?? 'Sejuta' }} <br>{{ $settings['hero_title_3'] ?? 'Kebersamaan.' }}</h1>
   <p class="lede">{{ $settings['hero_lede'] ?? '' }}</p>
   <div class="hero-cta">
     <a href="#gabung" class="btn btn-solid">Gabung Komunitas →</a>
