@@ -8,6 +8,7 @@ use App\Http\Controllers\GalleryPhotoController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LandingSettingController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationAdminController;
 use App\Http\Controllers\RegistrationController;
@@ -40,6 +41,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/activities', [ActivityController::class, 'store'])->name('activities.store');
     Route::put('/activities/{activity}', [ActivityController::class, 'update'])->name('activities.update');
     Route::delete('/activities/{activity}', [ActivityController::class, 'destroy'])->name('activities.destroy');
+
+    Route::get('/organizers', [OrganizerController::class, 'index'])->name('organizers.index');
+    Route::post('/organizers', [OrganizerController::class, 'store'])->name('organizers.store');
+    Route::delete('/organizers/{organizer}', [OrganizerController::class, 'destroy'])->name('organizers.destroy');
 
     Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsors.index');
     Route::post('/sponsors', [SponsorController::class, 'store'])->name('sponsors.store');

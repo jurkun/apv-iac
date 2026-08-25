@@ -103,6 +103,15 @@
     to{transform:translateX(-50%);}
   }
 
+  .struktur-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:28px;}
+  .struktur-item{text-align:center;}
+  .struktur-foto{width:110px;height:110px;border-radius:50%;margin:0 auto 14px;overflow:hidden;
+    border:2px solid var(--sinyal);background:var(--aspal-2);display:flex;align-items:center;justify-content:center;}
+  .struktur-foto img{width:100%;height:100%;object-fit:cover;}
+  .struktur-foto .placeholder{font-size:2.2rem;color:var(--krom-dim);}
+  .struktur-item h4{font-family:'Rajdhani';font-size:1.05rem;color:var(--krem);text-transform:uppercase;letter-spacing:.02em;}
+  .struktur-item p{color:var(--sinyal);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
+
   .join{background:var(--hijau);border:1px solid #46654e;padding:64px 6vw;display:flex;justify-content:space-between;
     align-items:center;gap:40px;flex-wrap:wrap;}
   .join h2{font-size:clamp(1.8rem,4vw,2.8rem);text-transform:uppercase;max-width:520px;}
@@ -149,6 +158,7 @@
     <a href="#galeri">Galeri</a>
     <a href="#sponsor">Sponsor</a>
     <a href="https://apvclub.com/cekid/" target="_blank" rel="noopener">Cek ID</a>
+    <a href="#struktur">Struktur</a>
     <a href="#gabung">Gabung</a>
   </div>
   <button class="burger" id="burgerBtn" aria-label="Buka menu"><span></span><span></span><span></span></button>
@@ -261,6 +271,32 @@
     </div>
   @else
     <p class="sponsor-kosong fade-up">Belum ada sponsor ditambahkan.</p>
+  @endif
+</section>
+
+<section id="struktur">
+  <div class="section-head fade-up">
+    <div class="eyebrow">Struktur Organisasi</div>
+    <h2>Pengurus Sabilulungan</h2>
+  </div>
+  @if($organizers->count())
+    <div class="struktur-grid fade-up">
+      @foreach($organizers as $o)
+        <div class="struktur-item">
+          <div class="struktur-foto">
+            @if($o->foto_path)
+              <img src="{{ asset('storage/' . $o->foto_path) }}" alt="{{ $o->nama }}" loading="lazy">
+            @else
+              <span class="placeholder">👤</span>
+            @endif
+          </div>
+          <h4>{{ $o->nama }}</h4>
+          <p>{{ $o->jabatan }}</p>
+        </div>
+      @endforeach
+    </div>
+  @else
+    <p class="sponsor-kosong fade-up">Struktur pengurus belum ditambahkan.</p>
   @endif
 </section>
 
