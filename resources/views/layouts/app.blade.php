@@ -31,6 +31,7 @@
         <a href="{{ route('gallery.index') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B] whitespace-nowrap">Galeri</a>
         <a href="{{ route('activities.index') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B] whitespace-nowrap">Kegiatan</a>
         <a href="{{ route('sponsors.index') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B] whitespace-nowrap">Sponsor</a>
+        <a href="{{ route('registrations.index') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B] whitespace-nowrap">Pendaftaran</a>
         <a href="{{ route('landing-settings.edit') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B] whitespace-nowrap">Landing Page</a>
         @if(auth()->user()->role === 'admin_pusat')
         <a href="{{ route('wilayah.index') }}" class="px-3 py-2 rounded-md hover:bg-[#F0A202] hover:text-[#20242B] whitespace-nowrap">Wilayah</a>

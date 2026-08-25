@@ -106,8 +106,25 @@
   .join{background:var(--hijau);border:1px solid #46654e;padding:64px 6vw;display:flex;justify-content:space-between;
     align-items:center;gap:40px;flex-wrap:wrap;}
   .join h2{font-size:clamp(1.8rem,4vw,2.8rem);text-transform:uppercase;max-width:520px;}
-  .join .syarat{list-style:none;color:#cfe0d3;font-size:.9rem;line-height:2;}
+  .join .syarat{list-style:none;color:#cfe0d3;font-size:.9rem;line-height:2;margin-top:14px;}
   .join .syarat li::before{content:'— ';color:var(--sinyal);}
+
+  .form-alert{max-width:900px;margin:24px auto 0;background:#213d27;border:1px solid #3d6b46;color:#cdeed4;
+    padding:14px 20px;border-radius:6px;font-size:.9rem;}
+  .form-daftar{max-width:900px;margin:24px auto 0;background:var(--aspal-2);border:1px solid #3a3a3a;
+    padding:36px;display:none;}
+  .form-daftar.open{display:block;}
+  .form-daftar h3{font-size:1.4rem;text-transform:uppercase;color:var(--krem);margin-bottom:8px;}
+  .form-sub{color:var(--krom-dim);font-size:.85rem;margin-bottom:24px;line-height:1.6;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media(max-width:640px){.form-row{grid-template-columns:1fr;}}
+  .form-field{margin-bottom:18px;}
+  .form-field label{display:block;font-size:.8rem;color:var(--krom-dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;}
+  .form-field input, .form-field textarea{
+    width:100%;background:var(--aspal);border:1px solid #444;color:var(--krem);padding:11px 14px;
+    border-radius:4px;font-family:'Inter';font-size:.92rem;}
+  .form-field input:focus, .form-field textarea:focus{outline:none;border-color:var(--sinyal);}
+  .form-err{color:var(--sinyal);font-size:.78rem;margin-top:4px;display:block;}
 
   footer{padding:50px 6vw;border-top:1px solid #333;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;color:var(--krom-dim);font-size:.85rem;}
   footer .kontak a{display:block;margin-top:6px;}
@@ -248,18 +265,67 @@
 
 <section id="gabung">
   <div class="join fade-up">
-    <h2>Siap Jadi Bagian dari Sabilulungan?</h2>
-    <ul class="syarat">
-      <li>Pemilik atau pengguna Suzuki APV</li>
-      <li>Bersedia mengikuti kopdar minimal 1x</li>
-      <li>Mengisi formulir pendaftaran anggota</li>
-      <li>Menjunjung nilai silih asih, silih asah, silih asuh</li>
-    </ul>
-    @if(!empty($settings['wa_url']) && $settings['wa_url'] !== '#')
-      <a href="{{ $settings['wa_url'] }}" target="_blank" rel="noopener" class="btn btn-solid">Daftar via WhatsApp →</a>
-    @else
-      <a href="#" class="btn btn-solid">Daftar Sekarang →</a>
-    @endif
+    <div>
+      <h2>Siap Jadi Bagian dari Sabilulungan?</h2>
+      <ul class="syarat">
+        <li>Pemilik atau pengguna Suzuki APV</li>
+        <li>Bersedia mengikuti kopdar minimal 1x</li>
+        <li>Mengisi formulir pendaftaran anggota</li>
+        <li>Menjunjung nilai silih asih, silih asah, silih asuh</li>
+      </ul>
+    </div>
+    <button type="button" id="btnBukaForm" class="btn btn-solid">Daftar Sekarang →</button>
+  </div>
+
+  @if(session('status'))
+    <div class="form-alert">{{ session('status') }}</div>
+  @endif
+
+  <div class="form-daftar fade-up" id="formDaftar">
+    <h3>Formulir Pendaftaran Anggota</h3>
+    <p class="form-sub">Setelah dikirim, status pendaftaran Kamu <b>menunggu</b> persetujuan admin. Kamu akan dihubungi lewat nomor HP/email yang diisi.</p>
+    <form method="POST" action="{{ route('registrations.store') }}">
+      @csrf
+      <div class="form-row">
+        <div class="form-field">
+          <label>Nama Lengkap *</label>
+          <input type="text" name="nama" required maxlength="150" value="{{ old('nama') }}">
+          @error('nama') <span class="form-err">{{ $message }}</span> @enderror
+        </div>
+        <div class="form-field">
+          <label>No. HP / WhatsApp *</label>
+          <input type="text" name="hp" required maxlength="30" value="{{ old('hp') }}">
+          @error('hp') <span class="form-err">{{ $message }}</span> @enderror
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" name="email" maxlength="150" value="{{ old('email') }}">
+          @error('email') <span class="form-err">{{ $message }}</span> @enderror
+        </div>
+        <div class="form-field">
+          <label>Kota / Wilayah *</label>
+          <input type="text" name="wilayah" required maxlength="100" value="{{ old('wilayah') }}" placeholder="Misal: Sukabumi">
+          @error('wilayah') <span class="form-err">{{ $message }}</span> @enderror
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Tipe Kendaraan</label>
+          <input type="text" name="tipe_kendaraan" maxlength="100" value="{{ old('tipe_kendaraan') }}" placeholder="Misal: Suzuki APV Arena">
+        </div>
+        <div class="form-field">
+          <label>No. Polisi</label>
+          <input type="text" name="no_polisi" maxlength="20" value="{{ old('no_polisi') }}" placeholder="Misal: F 1234 ABC">
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Alamat</label>
+        <textarea name="alamat" rows="2">{{ old('alamat') }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-solid">Kirim Pendaftaran →</button>
+    </form>
   </div>
 </section>
 
@@ -294,6 +360,18 @@
   const navLinks = document.getElementById('navLinks');
   burger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const formDaftar = document.getElementById('formDaftar');
+  const btnBukaForm = document.getElementById('btnBukaForm');
+  btnBukaForm.addEventListener('click', () => {
+    formDaftar.classList.toggle('open');
+    if(formDaftar.classList.contains('open')){
+      formDaftar.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+  @if($errors->any() || session('status'))
+    formDaftar.classList.add('open');
+  @endif
 </script>
 
 </body>
