@@ -9,7 +9,7 @@
 <style>
   :root{
     --aspal:#1B1C1E; --aspal-2:#26282B; --krom:#D7DADD; --krom-dim:#9CA1A6;
-    --sinyal:#E8590C; --hijau:#33513A; --krem:#F1E9D8;
+    --sinyal:#E8590C; --hijau:#33513A; --krem:#F1E9D8; --dashboard-orange:#F0A202;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -21,8 +21,9 @@
     padding:18px 6vw;background:linear-gradient(to bottom, rgba(27,28,30,.95), rgba(27,28,30,0));}
   .brand{display:flex;align-items:center;gap:10px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.05em;}
   .brand-mark{width:34px;height:24px;border:2px solid var(--sinyal);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--sinyal);}
-  nav .links{display:flex;gap:28px;font-size:.85rem;color:var(--krom-dim);align-items:center;}
-  nav .links a:hover{color:var(--sinyal);}
+  nav .links{display:flex;gap:6px;font-size:.85rem;color:var(--krom-dim);align-items:center;}
+  nav .links a{padding:8px 14px;border-radius:6px;transition:background .2s ease, color .2s ease;}
+  nav .links a:hover{background:var(--dashboard-orange);color:#20242B;}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
   .burger span{width:24px;height:2px;background:var(--krem);display:block;}
   @media(max-width:720px){
@@ -55,7 +56,7 @@
   .plat-strip .cell b{display:block;font-size:1.4rem;color:var(--krem);margin-top:2px;letter-spacing:.02em;}
   @media(max-width:720px){.plat-strip{flex-wrap:wrap;position:static;margin-top:40px;}.plat-strip .cell{min-width:50%;border-bottom:1px solid #333;}}
 
-  section{padding:110px 6vw;position:relative;}
+  section{padding:110px 6vw;position:relative;scroll-margin-top:90px;}
   .section-head{max-width:640px;margin-bottom:64px;}
   .section-head .eyebrow{margin-bottom:14px;}
   .section-head h2{font-size:clamp(2rem,4vw,3.2rem);text-transform:uppercase;color:var(--krem);}
@@ -88,6 +89,20 @@
   .galeri-strip .frame.kosong{display:flex;align-items:center;justify-content:center;color:var(--krom-dim);
     font-size:.8rem;background:linear-gradient(135deg,#232427,#17181a);}
 
+  .sponsor-wrap{position:relative;overflow:hidden;
+    mask-image:linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image:linear-gradient(to right, transparent, black 8%, black 92%, transparent);}
+  .sponsor-track{display:flex;gap:64px;width:max-content;animation:sponsor-scroll 28s linear infinite;}
+  .sponsor-wrap:hover .sponsor-track{animation-play-state:paused;}
+  .sponsor-item{display:flex;align-items:center;justify-content:center;height:70px;min-width:140px;}
+  .sponsor-item img{max-height:56px;max-width:140px;object-fit:contain;filter:grayscale(1) brightness(1.6);opacity:.75;transition:filter .25s ease, opacity .25s ease;}
+  .sponsor-item:hover img{filter:none;opacity:1;}
+  .sponsor-kosong{color:var(--krom-dim);font-size:.85rem;}
+  @keyframes sponsor-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
   .join{background:var(--hijau);border:1px solid #46654e;padding:64px 6vw;display:flex;justify-content:space-between;
     align-items:center;gap:40px;flex-wrap:wrap;}
   .join h2{font-size:clamp(1.8rem,4vw,2.8rem);text-transform:uppercase;max-width:520px;}
@@ -115,6 +130,7 @@
     <a href="#rute">Perjalanan Kami</a>
     <a href="#kegiatan">Kegiatan</a>
     <a href="#galeri">Galeri</a>
+    <a href="#sponsor">Sponsor</a>
     <a href="#gabung">Gabung</a>
   </div>
   <button class="burger" id="burgerBtn" aria-label="Buka menu"><span></span><span></span><span></span></button>
@@ -202,6 +218,32 @@
       <div class="frame kosong">Belum ada foto galeri</div>
     @endforelse
   </div>
+</section>
+
+<section id="sponsor">
+  <div class="section-head fade-up">
+    <div class="eyebrow">Didukung Oleh</div>
+    <h2>Sponsor &amp; Mitra</h2>
+  </div>
+  @if($sponsors->count())
+    <div class="sponsor-wrap fade-up">
+      <div class="sponsor-track">
+        @foreach($sponsors->concat($sponsors) as $sponsor)
+          <div class="sponsor-item">
+            @if($sponsor->url)
+              <a href="{{ $sponsor->url }}" target="_blank" rel="noopener">
+                <img src="{{ asset('storage/' . $sponsor->logo_path) }}" alt="{{ $sponsor->nama }}" loading="lazy">
+              </a>
+            @else
+              <img src="{{ asset('storage/' . $sponsor->logo_path) }}" alt="{{ $sponsor->nama }}" loading="lazy">
+            @endif
+          </div>
+        @endforeach
+      </div>
+    </div>
+  @else
+    <p class="sponsor-kosong fade-up">Belum ada sponsor ditambahkan.</p>
+  @endif
 </section>
 
 <section id="gabung">
