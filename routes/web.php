@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DueController;
 use App\Http\Controllers\ExportController;
@@ -30,6 +31,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/gallery-settings', [LandingSettingController::class, 'edit'])->name('landing-settings.edit');
     Route::put('/gallery-settings', [LandingSettingController::class, 'update'])->name('landing-settings.update');
+
+    Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
+    Route::post('/activities', [ActivityController::class, 'store'])->name('activities.store');
+    Route::put('/activities/{activity}', [ActivityController::class, 'update'])->name('activities.update');
+    Route::delete('/activities/{activity}', [ActivityController::class, 'destroy'])->name('activities.destroy');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');

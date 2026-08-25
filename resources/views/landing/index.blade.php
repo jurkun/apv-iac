@@ -175,12 +175,15 @@
     <h2>Yang Kami Kerjakan Bersama</h2>
   </div>
   <div class="grid3 fade-up">
-    <div class="card"><div class="num">KOPDAR</div><h3>Kopi Darat Rutin</h3><p>Pertemuan bulanan untuk mempererat silaturahmi antar anggota dan keluarga.</p></div>
-    <div class="card"><div class="num">TOURING</div><h3>Konvoi &amp; Wisata</h3><p>Perjalanan bersama ke destinasi wisata Jawa Barat dan sekitarnya, lengkap dengan pengawalan.</p></div>
-    <div class="card"><div class="num">TEKNIS</div><h3>Sharing Perawatan</h3><p>Diskusi dan pelatihan perawatan dasar APV bersama anggota yang berpengalaman.</p></div>
-    <div class="card"><div class="num">SOSIAL</div><h3>Bakti Sosial</h3><p>Aksi donasi dan bantuan bagi masyarakat sekitar, terutama saat momen bencana atau hari besar.</p></div>
-    <div class="card"><div class="num">MERCHANDISE</div><h3>Atribut Komunitas</h3><p>Kaos, stiker, dan emblem resmi sebagai identitas kebanggaan anggota Sabilulungan.</p></div>
-    <div class="card"><div class="num">ANNIVERSARY</div><h3>Milad Tahunan</h3><p>Perayaan ulang tahun komunitas dengan gathering akbar seluruh chapter.</p></div>
+    @forelse($activities as $activity)
+      <div class="card">
+        <div class="num">{{ $activity->label }}</div>
+        <h3>{{ $activity->judul }}</h3>
+        <p>{{ $activity->deskripsi }}</p>
+      </div>
+    @empty
+      <div class="card"><p>Belum ada kegiatan ditambahkan.</p></div>
+    @endforelse
   </div>
 </section>
 
